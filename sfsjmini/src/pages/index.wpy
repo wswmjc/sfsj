@@ -1,0 +1,773 @@
+<style lang="less">
+.index-bar {
+  width: 100%;
+  height: 86rpx;
+  display: flex;
+  align-items: center;
+  .bar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 24rpx;
+    font-size: 32rpx;
+    color: #333;
+    position: relative;
+    &.selected {
+      font-size: 44rpx;
+      font-weight: bold;
+      .selected-bar {
+        width: 20rpx;
+        height: 6rpx;
+        background: linear-gradient(90deg, #f39844 0%, #ea7032 100%);
+        border-radius: 3rpx;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+.content-wrapper {
+  width: 100%;
+  background: #f5f5f5;
+  .recommend-list {
+    width: 100%;
+    .recommend-item {
+      width: 100%;
+      padding: 32rpx 24rpx;
+      box-sizing: border-box;
+      background: #fff;
+      margin-bottom: 12rpx;
+      .recommend-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .recommend-header-left {
+          display: flex;
+          align-items: center;
+          .avatar {
+            width: 80rpx;
+            height: 80rpx;
+            margin-right: 10rpx;
+            image {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .userinfo {
+            .name-wrapper {
+              display: flex;
+              align-items: center;
+              height: 40rpx;
+              margin-bottom: 5rpx;
+              .nickname {
+                color: #333333;
+                font-size: 28rpx;
+                margin-right: 8rpx;
+              }
+              .vip-tag {
+                width: 79rpx;
+                img {
+                  width: 100%;
+                }
+              }
+            }
+            .publish-time {
+              font-size: 24rpx;
+              color: #999999;
+            }
+          }
+        }
+        .recommend-header-right {
+          padding: 0 16rpx;
+          height: 40rpx;
+          border-radius: 4rpx;
+          border: 3rpx solid #333333;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #333333;
+          font-size: 24rpx;
+          &.unfollow {
+            border: 3rpx solid #999999;
+            color: #999999;
+          }
+        }
+      }
+      .recommend-title {
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 90rpx;
+        margin-top: 26rpx;
+        font-size: 32rpx;
+        color: #333333;
+        line-height: 45rpx;
+      }
+      .recommend-tags {
+        width: 100%;
+        padding-left: 90rpx;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        .tag-item {
+          color: #2facee;
+          font-size: 32rpx;
+          margin-right: 10rpx;
+        }
+      }
+      .pic-wrapper {
+        width: 100%;
+        padding-left: 90rpx;
+        margin-top: 16rpx;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        .pic-item {
+          background: #f39844;
+          margin-bottom: 8rpx;
+          justify-self: start;
+          &.pic1 {
+            width: 100%;
+            height: 378rpx;
+          }
+          &.pic2 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+          &.pic3 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+          &.pic4 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+          &.pic5 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+          &.pic6 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+          &.pic7 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+          &.pic8 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+          &.pic9 {
+            width: 200rpx;
+            height: 200rpx;
+          }
+        }
+      }
+      .recommend-bar {
+        width: 100%;
+        padding-left: 90rpx;
+        margin-top: 16rpx;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .recommend-bar-left {
+          display: flex;
+          align-items: center;
+          .praise-wrapper,
+          .comment-wrapper,
+          .share-wrapper {
+            display: flex;
+            align-items: center;
+            margin-right: 47rpx;
+            color: #888888;
+            image {
+              width: 36rpx;
+              height: 36rpx;
+              margin: 8rpx;
+            }
+            span {
+              font-size: 24rpx;
+              color: #888888;
+            }
+          }
+        }
+        .option-btn {
+          width: 36rpx;
+          height: 36rpx;
+          image {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+.camera-btn {
+  position: fixed;
+  bottom: 187rpx;
+  right: 8rpx;
+  width: 160rpx;
+  height: 160rpx;
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}
+.dialog-bottom-wrapper {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1000;
+  .dialog-bottom-bg {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  .dialog-bottom {
+    width: 100%;
+    background: #f5f5f5;
+    border-radius: 12rpx 12rpx 0 0;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    > view {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      height: 108rpx;
+      color: #333;
+      font-size: 32rpx;
+      &.cancel-btn {
+        margin-top: 12rpx;
+        margin-bottom: env(safe-area-inset-bottom);
+      }
+    }
+  }
+}
+input {
+  border: 1rpx solid #ccc;
+  display: inline-block;
+  width: 200rpx;
+  border-radius: 5rpx;
+}
+.info {
+  padding-right: 10rpx;
+}
+// .userinfo {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+.slide {
+  width: 640rpx;
+  display: flex;
+  border: 1rpx solid #ccc;
+  font-size: 28rpx;
+  align-items: center;
+  box-sizing: border-box;
+  .left {
+    width: 750rpx;
+    padding: 20rpx;
+  }
+  .right {
+    display: flex;
+    .right-item {
+      padding: 20rpx 30rpx;
+      background-color: red;
+      color: #fff;
+    }
+  }
+}
+</style>
+<template>
+  <div class="container">
+    <div class="index-bar">
+      <div class="bar-item" :class="{selected: index===selectedTabIndex}" v-for="(item,index) in tabList" :key="index" @tap="SelectBar(index)">
+        {{item}}
+        <div class="selected-bar" v-if="index===selectedTabIndex"></div>
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <div class="recommend-list">
+        <div class="recommend-item" v-for="(item,index) in recommendList" :key="index">
+          <div class="recommend-header">
+            <div class="recommend-header-left">
+              <div class="avatar">
+                <image :src="item.avatar" alt=""></image>
+              </div>
+              <div class="userinfo">
+                <div class="name-wrapper">
+                  <div class="nickname">{{item.nickname}}</div>
+                  <div class="vip-tag" v-if="item.isVip"></div>
+                </div>
+                <div class="publish-time">{{item.timeStr}}</div>
+              </div>
+            </div>
+            <div class="recommend-header-right" :class="{unfollow:item.isFollow===true}" v-if="item.isSelf===false">{{item.isFollow?'取消关注':'关注'}}</div>
+          </div>
+          <div class="recommend-title">{{item.title}}</div>
+          <div class="recommend-tags">
+            <div class="tag-item" v-for="sItem in item.tags" :key="sItem.id">#{{sItem.name}}</div>
+          </div>
+          <div class="pic-wrapper">
+            <!-- <img src="" alt=""> -->
+            <div class="pic-item" :class="{
+              pic1:item.picList.length===1,
+              pic2:item.picList.length===2,
+              pic3:item.picList.length===3,
+              pic4:item.picList.length===4,
+              pic5:item.picList.length===5,
+              pic6:item.picList.length===6,
+              pic7:item.picList.length===7,
+              pic8:item.picList.length===8,
+              pic9:item.picList.length===9
+            }" v-for="(sItem,sIndex) in item.picList" :key="sIndex"></div>
+          </div>
+          <div class="recommend-bar">
+            <div class="recommend-bar-left">
+              <div class="praise-wrapper">
+                <image src="/static/praise.png" mode="scaleToFill">
+                </image>
+                <span>{{item.praiseCount}}</span>
+              </div>
+              <div class="comment-wrapper">
+                <image src="/static/comment.png" mode="scaleToFill">
+                </image>
+                <span>{{item.commentCount}}</span></div>
+              <div class="share-wrapper">
+                <image src="/static/share.png" mode="scaleToFill">
+                </image>
+                <span>{{item.shareCount}}</span></div>
+            </div>
+            <div class="option-btn">
+              <image src="/static/more.png" mode="scaleToFill">
+              </image>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="camera-btn" @tap="ToPublish">
+      <image src="/static/camera.png" mode="scaleToFill">
+      </image>
+    </div>
+    <div class="dialog-bottom-wrapper" v-if="showPublishBar===true">
+      <div class="dialog-bottom-bg" @tap="showPublishBar=false"></div>
+      <div class="dialog-bottom">
+        <div class="to-publish-btn">发布我的作品或动态</div>
+        <div class="take-photo-btn" @tap="TakePhoto">拍照</div>
+        <div class="selected-photo-btn" @tap="ChooseImage">从相册中选择</div>
+        <div class="cancel-btn" @tap="showPublishBar=false">取消</div>
+      </div>
+    </div>
+    <!-- <div class="userinfo" @tap="handleViewTap">
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+      <div class="userinfo-nickname">{{ userInfo.nickName }}</div>
+    </div> -->
+
+    <!-- <panel>
+      <div class="title" slot="title">测试数据绑定</div>
+
+      <text class="info" @tap="currentTime = +new Date()">{{m1.getTime(currentTime)}}</text>
+      <text class="info">{{setTimeoutTitle}}</text>
+      <text class="info" @tap="mixintap">{{mixin}}</text>
+      <text class="info">{{testcomputed}}</text>
+      <text class="info">{{counter}}</text>
+    </panel> -->
+
+    <!-- <panel>
+      <div class="title" slot="title">其它测试</div>
+      <button @tap="toast" size="mini">第三方组件</button>
+      <button @tap="communicate" size="mini">组件通信</button>
+      <button @tap="tap" size="mini">混合TAP事件</button>
+    </panel> -->
+
+    <!-- <panel>
+      <div class="title" slot="title">测试并发网络请求</div>
+      <div>返回结果: <text>{{netrst}}</text></div>
+      <button @tap="request" size="mini"> 点我发起10个请求 </button>
+    </panel> -->
+
+     <!-- <panel>
+       <div class="title" slot="title">测试 v-model</div>
+       <div style="display: flex; align-items: center;">
+         <input v-model="inputmodel" />
+         <text style="margin-left: 30rpx;">Value: {{inputmodel}}</text>
+       </div>
+     </panel> -->
+
+    <!-- <panel>
+      <div class="title" slot="title">测试组件</div>
+
+      <text class="testcounter">全局计数器：</text>
+      <div class="counterview">
+        <button @tap="mynum++" size="mini">全局计数器: {{mynum}}</button>
+      </div>
+
+      <text class="testcounter">计数组件1 - num: </text>
+      <div class="counterview">
+
+        <counter @index-emit.user="counterEmit" />
+      </div>
+      <text class="testcounter">计数组件2 - num.sync: </text>
+
+      <div class="counterview">
+        <counter :num.sync="mynum"></counter>
+      </div>
+    </panel> -->
+
+    <!-- <panel>
+      <div class="title" slot="title">测试组件Repeat</div>
+      <div v-for="(item, index) in groupList">
+        <group :grouplist="item" :index="index"></group>
+      </div>
+    </panel>
+
+    <panel>
+      <div class="title" slot="title">测试列表</div>
+      <list></list>
+    </panel>
+
+    <panel>
+      <div class="title" slot="title">测试引用第三方原生组件</div>
+      <slide-view class="slide" width="640" height="80" slideWidth="266">
+        <view class="left" slot="left">这是一个原生组件，右滑试试看。</view>
+        <view class="right" slot="right">
+          <view class="right-item">删除</view>
+        </view>
+      </slide-view>
+     </panel> -->
+    <!--toast /-->
+  </div>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+import eventHub from '../common/eventHub';
+import { mapState } from '@wepy/x';
+import store from '../store';
+import testMixin from '../mixins/test';
+const defaultAvatar = '../static/default-avatar.png';
+
+wepy.page({
+  store,
+  config: {
+    navigationBarTitleText: '书法世界'
+  },
+
+  hooks: {
+    // Page 级别 hook, 只对当前 Page 的 setData 生效。
+    // 'before-setData': function(dirty) {
+    //   if (Math.random() < 0.2) {
+    //     console.log('setData canceled');
+    //     return false; // Cancel setData
+    //   }
+    //   dirty.time = +new Date();
+    //   return dirty;
+    // }
+  },
+
+  mixins: [testMixin],
+
+  data: {
+    tabList: ['关注', '推荐'],
+    selectedTabIndex: 0,
+    recommendList: [
+      {
+        nickname: '飞白兮',
+        avatar: defaultAvatar,
+        timeStr: '3小时前',
+        title:
+          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
+        picList: ['1'],
+        tags: [
+          {
+            id: '2',
+            name: '王羲之',
+            type: '2'
+          },
+          {
+            id: '3',
+            name: '楷书',
+            type: '3'
+          }
+        ],
+        isVip: true,
+        praiseCount: 111,
+        commentCount: 111,
+        shareCount: 111,
+        isFollow: false,
+        isSelf: false,
+        uid: ''
+      },
+      {
+        nickname: '飞白兮',
+        avatar: defaultAvatar,
+        timeStr: '3小时前',
+        title:
+          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
+        picList: ['1', '2'],
+        tags: [
+          {
+            id: '2',
+            name: '王羲之',
+            type: '2'
+          },
+          {
+            id: '3',
+            name: '楷书',
+            type: '3'
+          }
+        ],
+        isVip: true,
+        praiseCount: 111,
+        commentCount: 111,
+        shareCount: 111,
+        isFollow: false,
+        isSelf: false,
+        uid: ''
+      },
+      {
+        nickname: '飞白兮',
+        avatar: defaultAvatar,
+        timeStr: '3小时前',
+        title:
+          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
+        picList: ['1', '2', '3'],
+        tags: [
+          {
+            id: '2',
+            name: '王羲之',
+            type: '2'
+          },
+          {
+            id: '3',
+            name: '楷书',
+            type: '3'
+          }
+        ],
+        isVip: true,
+        praiseCount: 111,
+        commentCount: 111,
+        shareCount: 111,
+        isFollow: false,
+        isSelf: false,
+        uid: ''
+      }
+    ],
+    followList: [],
+    showPublishBar: false
+    // inputmodel: 'v-model',
+    // mynum: 20,
+    // userInfo: {
+    //   nickName: '加载中...'
+    // },
+    // currentTime: +new Date(),
+    // setTimeoutTitle: '标题三秒后会被修改',
+    // count: 0,
+    // netrst: '',
+    // groupList: [
+    //   {
+    //     id: 1,
+    //     name: '点击改变',
+    //     list: [
+    //       {
+    //         childid: '1.1',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '1.2',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '1.3',
+    //         childname: '子项，点我改变'
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     id: 2,
+    //     name: '点击改变',
+    //     list: [
+    //       {
+    //         childid: '2.1',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '2.2',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '2.3',
+    //         childname: '子项，点我改变'
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     id: 3,
+    //     name: '点击改变',
+    //     list: [
+    //       {
+    //         childid: '3.1',
+    //         childname: '子项，点我改变'
+    //       }
+    //     ]
+    //   }
+    // ]
+  },
+
+  computed: {
+    ...mapState(['counter']),
+    testcomputed() {
+      return 'computed - ' + this.mynum;
+    }
+  },
+
+  methods: {
+    SelectBar(tabIndex) {
+      this.selectedTabIndex = tabIndex;
+    },
+    ToPublish() {
+      this.showPublishBar = true;
+    },
+    ChooseImage() {
+      wx.chooseImage({
+        count: 9,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    },
+    TakePhoto() {
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['camera'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    }
+    // handleViewTap() {
+    //   console.log('handleVieTap clicked');
+    // },
+    // tap() {
+    //   throw 'can not go here';
+    // },
+    // plus() {
+    //   this.mynum++;
+    // },
+    // toast() {
+    //   let promise = this.$invoke('toast', 'show', {
+    //     title: '自定义标题',
+    //     img:
+    //       'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+    //   });
+
+    //   promise.then(d => {
+    //     console.log('toast done');
+    //   });
+    // },
+    // mixintap() {
+    //   console.log('do noting from ' + this.$is);
+    // },
+    // communicate() {
+    //   let counters = this.$children.filter(
+    //     com => com.$is === 'components/counter'
+    //   );
+
+    //   // Get children counter
+    //   counters[0].num++;
+    //   counters[1].num--;
+
+    //   eventHub.$emit('app-launch', { a: 1 }, { b: 2 });
+    // },
+    // request() {
+    //   let self = this;
+    //   let i = 10;
+    //   let map = [
+    //     'MA==',
+    //     'MQo=',
+    //     'Mg==',
+    //     'Mw==',
+    //     'NA==',
+    //     'NQ==',
+    //     'Ng==',
+    //     'Nw==',
+    //     'OA==',
+    //     'OQ=='
+    //   ];
+    //   while (i--) {
+    //     wx.request({
+    //       url:
+    //         'https://www.madcoder.cn/tests/sleep.php?time=1&t=css&c=' +
+    //         map[i] +
+    //         '&i=' +
+    //         i,
+    //       success: function(d) {
+    //         if (d.statusCode !== 200) {
+    //           self.netrst += d.statusCode + '.';
+    //         } else {
+    //           self.netrst += d.data + '.';
+    //         }
+    //       }
+    //     });
+    //   }
+    // },
+    // counterEmit(num) {
+    //   console.log(`${this.$is} receive event, the number is: ${num}`);
+    // }
+  },
+
+  created() {
+    let self = this;
+    // self.currentTime = +new Date();
+
+    // self.setTimeoutTitle = '标题三秒后会被修改';
+    // setTimeout(() => {
+    //   self.setTimeoutTitle = '到三秒了';
+    // }, 3000);
+
+    wx.getUserInfo({
+      success(res) {
+        self.userInfo = res.userInfo;
+      }
+    });
+  }
+});
+</script>
+<config>
+{
+    navigationBarTitleText: '书法世界',
+    usingComponents: {
+      panel: '~@/components/panel',
+      counter: '~counter',
+      list: '../components/list',
+      group: '../components/group',
+      "slide-view": "module:miniprogram-slide-view",
+    }
+}
+</config>
