@@ -1,0 +1,700 @@
+<style lang="less">
+  .word-lib {
+    width: 100%;
+    min-height: 100vh;
+    background: #F5F5F5;
+    .search-wrapper {
+      width: 100%;
+      height: 88rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: #fff;
+      box-sizing: border-box;
+      .search-icon {
+        position: absolute;
+        width: 36rpx;
+        height: 36rpx;
+        top: 26rpx;
+        left: 39rpx;
+      }
+      .search-content {
+        width: 701rpx;
+        height: 64rpx;
+        background: linear-gradient(90deg, #F3F8F8 0%, #EFF4F4 100%);
+        border-radius: 4rpx;
+        border: 0;
+        box-sizing: border-box;
+        padding-left:54rpx;
+        font-size: 26rpx;
+        color: #999; 
+      }
+    }
+    .tab-wrapper {
+      width: 100%;
+      height: 88rpx;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24rpx;
+      box-sizing: border-box;
+      background: #fff;
+      .tab-content{
+        width: 483rpx;
+        height: 88rpx;
+        display: flex;
+        align-items: center;
+        .bar-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          padding: 0 24rpx;
+          font-size: 32rpx;
+          color: #333;
+          position: relative;
+          &.selected {
+            font-size: 44rpx;
+            font-weight: bold;
+            .selected-bar {
+              width: 20rpx;
+              height: 6rpx;
+              background: linear-gradient(90deg, #f39844 0%, #ea7032 100%);
+              border-radius: 3rpx;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: 0 auto;
+            }
+          }
+        }
+      }
+      .collect-content {
+        width: 128rpx;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .collect-icon {
+          width: 29rpx;
+          height: 29rpx;
+        }
+        .collect-text {
+          font-size: 24rpx;
+          color: #404040;
+        }
+      }
+    }
+    .list-wrapper {
+      width: 100%;
+      padding: 0 24rpx;
+      box-sizing: border-box;
+      .condition-wrapper {
+        width: 100%;
+        box-sizing: border-box;
+        .all-condition {
+          width: 100%;
+          height: 100rpx;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .all-condition-list {
+            width: 432rpx;
+            display: flex;
+            align-items: center;
+            .all-condition-item {
+              padding: 6rpx 12rpx;
+              border-radius: 4rpx;
+              background: #D8D8D8;
+              color: #333333;
+              font-size: 24rpx;
+              margin-right: 24rpx;
+              &.selected {
+                background: linear-gradient(90deg, #F39844 0%, #EA7032 100%);
+                color: #fff;
+              }
+            }
+          }
+          .expand-btn {
+            width: 169rpx;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 24rpx;
+            color: #333;
+            .arrow-icon {
+              width: 24rpx;
+              height: 24rpx;
+            }
+          }
+        }
+        .year-condition {
+          width: 100%;
+          padding: 24rpx 0;
+          border-top: 1rpx solid #E9E9E9;
+          .year-condition-list{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            .year-condition-item {
+              padding: 6rpx 12rpx;
+              border-radius: 4rpx;
+              background: #D8D8D8;
+              color: #333333;
+              font-size: 24rpx;
+              margin-right: 24rpx;
+              margin-bottom: 12rpx;
+              &.selected {
+                background: linear-gradient(90deg, #F39844 0%, #EA7032 100%);
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+      .word-list-wrapper {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        .word-list{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          box-sizing: border-box;
+          .word-item {
+            width: 226rpx;
+            margin-bottom: 12rpx;
+            background: #fff;
+            .word-pic{
+              width: 100%;
+              height: 226rpx;
+              box-sizing: border-box;
+              padding: 6rpx;
+              border-bottom: 1rpx solid #eee;
+              margin-bottom: 15rpx;
+            }
+            .word-title{
+              width: 100%;
+              padding: 0 16rpx;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 28rpx;
+              color: #333;
+              line-height: 40rpx;
+              margin-bottom: 4rpx;
+            }
+            .word-auth{
+              width: 100%;
+              padding: 0 16rpx;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 22rpx;
+              color: #999;
+              line-height: 30rpx;
+              margin-bottom: 20rpx;
+            }
+          }
+        }
+      }
+      .page-list-wrapper {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        .page-list{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          box-sizing: border-box;
+          .page-item {
+            width: 345rpx;
+            margin-bottom: 12rpx;
+            background: #fff;
+            .page-pic{
+              width: 100%;
+              height: 214rpx;
+              box-sizing: border-box;
+              padding: 6rpx;
+              border-bottom: 1rpx solid #eee;
+              margin-bottom: 15rpx;
+            }
+            .page-title{
+              width: 100%;
+              padding: 0 16rpx;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 28rpx;
+              color: #333;
+              line-height: 40rpx;
+              margin-bottom: 4rpx;
+            }
+            .page-auth{
+              width: 100%;
+              padding: 0 16rpx;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 22rpx;
+              color: #999;
+              line-height: 30rpx;
+              margin-bottom: 20rpx;
+            }
+          }
+        }
+      }
+      .auth-list-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 32rpx; 
+        .auth-list {
+          width: 525rpx;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .auth-item {
+            width: 167rpx;
+            margin-bottom: 12rpx;
+            background: #fff;
+            .auth-pic{
+              width: 100%;
+              height: 167rpx;
+              margin-bottom:12rpx;
+            }
+            .auth-name{
+              font-size: 28rpx;
+              text-align: center;
+              width: 100%;
+              color: #333;
+              margin-bottom: 4rpx;
+            }
+            .auth-year{
+              font-size: 22rpx;
+              text-align: center;
+              width: 100%;
+              color: #999;
+              margin-bottom: 20rpx;
+            }
+          }
+        }
+        .year-list-wrapper {
+          width: 78rpx;
+          height: auto;
+          position: relative;
+          .year-line {
+            width: 2rpx;
+            height: 100%;
+            background: #D8D8D8;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            z-index: 1;
+          }
+          .year-list {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            .year-item {
+              width: 78rpx;
+              height: 78rpx;
+              background: #D8D8D8;
+              border: 4rpx solid #F5F5F5;
+              box-sizing: border-box;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 24rpx;
+              color: #333;
+              margin-bottom: 100rpx;
+              &:last-child{
+                margin-bottom: 0;
+              }
+              &.selected{
+                border: 0;
+                background: linear-gradient(90deg, #F39844 0%, #EA7032 100%);
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<template>
+    <div class="word-lib">
+      <div class="search-wrapper">
+        <input type="text" class="search-content" placeholder="搜索字/字帖/作者/碑帖"/>
+        <image class="search-icon" src="/static/checkbox.png"></image>
+      </div>
+      <div class="tab-wrapper">
+        <div class="tab-content">
+           <div class="bar-item" :class="{selected: index===selectedTabIndex}" v-for="(item,index) in tabList" :key="index" @tap="SelectBar(index)">
+            {{item}}
+            <div class="selected-bar" v-if="index===selectedTabIndex"></div>
+          </div>
+        </div>
+        <div class="collect-content" @tap="SelectCollect">
+          <image class="collect-icon" src="/static/uncollect.png"></image>
+          <div class="collect-text">我的收藏</div>
+        </div>
+      </div>
+      <div class="list-wrapper" v-if="selectedTabIndex<=2">
+        <div class="condition-wrapper" v-if="selectedTabIndex!=2">
+          <div class="all-condition">
+            <div class="all-condition-list">
+              <div class="all-condition-item" :class="{selected: index === selectedWordType}" v-for="(item,index) in wordTypeList" :key="index" @tap="SelectWordType(index)">
+                {{item}}
+              </div>
+            </div>
+            <div class="expand-btn" @tap="SwtichCondtion">
+              <div>{{showAllCondition ? '收起筛选条件' : '更多筛选条件'}}</div>
+              <image class="arrow-icon" src="/static/arrow-up.png" v-if="showAllCondition==true"></image>
+              <image class="arrow-icon" src="/static/arrow-down.png" v-else></image>
+            </div>
+          </div>
+          <div class="year-condition" v-show="showAllCondition==true">
+            <div class="year-condition-list">
+              <div class="year-condition-item" :class="{selected: index === selectedDynasty}" v-for="(item,index) in dynastyList" :key="index" @tap="SelectDynasty(index)">
+                {{item}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="word-list-wrapper" v-if="selectedTabIndex===0">
+          <div class="word-list">
+            <div class="word-item" v-for="(item,index) in wordList" :key="index">
+              <div class="word-pic"></div>
+              <div class="word-title">{{item.title}}</div>
+              <div class="word-auth">{{item.auth}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="page-list-wrapper" v-if="selectedTabIndex===1">
+          <div class="page-list">
+            <div class="page-item" v-for="(item,index) in pageList" :key="index">
+              <div class="page-pic"></div>
+              <div class="page-title">{{item.title}}</div>
+              <div class="page-auth">{{item.auth}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="auth-list-wrapper" v-if="selectedTabIndex===2">
+          <div class="auth-list">
+            <div class="auth-item" v-for="(item,index) in authList" :key="index">
+              <div class="auth-pic"></div>
+              <div class="auth-name">{{item.name}}</div>
+              <div class="auth-year">{{item.year}}</div>
+            </div>
+          </div>
+          <div class="year-list-wrapper">
+            <div class="year-line"></div>
+            <div class="year-list">
+              <div class="year-item" :class="{selected: index === selectedYear}"  v-for="(item,index) in dynastyList" :key="index" @tap="SelectYear(index)">
+                {{index===0?"全部": item}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="collect-wrapper" v-if="selectedTabIndex===3">
+        <div class="collect-page">
+          <div class="collect-page-title">
+            <div class="title-name">我的字帖</div>
+            <div class="collect-all">
+              <div class="all-text">所有字帖</div>
+              <image class="arrow-icon"></image>
+            </div>
+          </div>
+          <div class="collect-page-list">
+            <div class="collect-page-item">
+              <div class="collect-page-pic"></div>
+              <div class="collect-page-title"></div>
+              <div class="collect-page-auth"></div>
+            </div>
+            <div class="collect-add">
+              <image class="add-icon"></image>
+              <div class="add-name">添加字帖</div>
+            </div>
+          </div>
+        </div>
+        <div class="collect-word">
+          <div class="collect-word-title">
+            <div class="title-name">我的单字</div>
+            <div class="collect-all">
+              <div class="all-text">所有单字</div>
+              <image class="arrow-icon"></image>
+            </div>
+          </div>
+          <div class="collect-word-list">
+            <div class="collect-word-item">
+              <div class="collect-word-pic"></div>
+              <div class="collect-word-title"></div>
+              <div class="collect-word-auth"></div>
+            </div>
+            <div class="collect-add">
+              <image class="add-icon"></image>
+              <div class="add-name">添加单字</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+<script>
+import wepy from '@wepy/core';
+const defaultAvatar = '../static/default-avatar.png';
+
+wepy.page({
+  hooks: {
+    // Page 级别 hook, 只对当前 Page 的 setData 生效。
+    // 'before-setData': function(dirty) {
+    //   if (Math.random() < 0.2) {
+    //     console.log('setData canceled');
+    //     return false; // Cancel setData
+    //   }
+    //   dirty.time = +new Date();
+    //   return dirty;
+    // }
+  },
+
+  data: {
+    tabList: ['单字库', '字帖库', '书法家'],
+    wordTypeList: ['全部','楷','行','隶','篆'],
+    dynastyList: ['全部朝代','先秦','汉','唐','宋','元','明','清','近代'],
+    selectedTabIndex:0,
+    selectedWordType:0,
+    selectedDynasty:0,
+    showAllCondition: false,
+    wordList:[
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+      {
+      pic:'',
+      id:'',
+      title:'智永千字文',
+      auth:'晋 王羲之'
+    },
+    ],
+    pageList:[
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+       {
+      pic:'',
+      id:'',
+      title:'兰亭集序',
+      auth:'晋 王羲之'
+    },
+    ],
+    authList:[
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    },
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    },
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    },
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    },
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    },
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    },
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    },
+      {
+      pic:'',
+      id:'',
+      name:'王羲之',
+      year:'公元709-769'
+    }
+    ],
+    selectedYear: 0
+  },
+
+  methods: {
+    SelectCollect() {
+      this.selectedTabIndex = 3
+    },
+    SelectBar(tabIndex) {
+      this.selectedTabIndex = tabIndex;
+    },
+    SelectWordType(wordTypeIndex) {
+      this.selectedWordType = wordTypeIndex;
+    },
+    SelectDynasty(dynastyIndex) {
+      this.selectedDynasty = dynastyIndex;
+    },
+    SelectYear(yearIndex) {
+      this.selectedYear = yearIndex
+    },
+    SwtichCondtion() {
+      this.showAllCondition = !this.showAllCondition
+    },
+    ToPublish() {
+      this.showPublishBar = true;
+    },
+    ChooseImage() {
+      wx.chooseImage({
+        count: 9,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    },
+    TakePhoto() {
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['camera'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    }
+  },
+
+  created() {
+    let self = this;
+    wx.getUserInfo({
+      success(res) {
+        self.userInfo = res.userInfo;
+      }
+    });
+  }
+});
+</script>
+<config>
+{
+    navigationBarTitleText: '书法世界'
+}
+</config>

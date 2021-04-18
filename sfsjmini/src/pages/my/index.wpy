@@ -1,0 +1,213 @@
+<style lang="less">
+.my-index {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  .header-image {
+    width: 100%;
+    height: 300rpx;
+    background: #f39844;
+  }
+  .userinfo {
+    width: 100%;
+    height: 168rpx;
+    display: flex;
+    align-items: center;
+    margin-top: -60rpx;
+    padding: 0 24rpx;
+    .avatar-wrapper {
+      width: 168rpx;
+      height: 168rpx;
+      position: relative;
+      margin-right: 93rpx;
+      .avatar {
+        width: 160rpx;
+        height: 160rpx;
+        border: 4rpx solid #ffffff;
+        background: #19304C;
+        border-radius: 50%;
+      }
+      .tag-icon {
+        position: absolute;
+        width: 44rpx;
+        height: 44rpx;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    .attach-list{
+      display: flex;
+      align-items: center;
+      margin-top: 60rpx;
+      .attach-item {
+        display: flex;
+        align-items: flex-end;
+        margin-right: 40rpx;
+        .count{
+          color: #333;
+          font-weight: bold;
+          font-size: 40rpx;
+          line-height: 44rpx;
+          margin-right: 4rpx;
+        }
+        .unit{
+          font-size: 22rpx;
+          color: #999999;
+          line-height: 30rpx;
+        }
+      }
+    }
+  }
+}
+</style>
+<template>
+    <div class="my-index">
+      <image class="header-image"></image>
+      <div class="userinfo">
+        <div class="avatar-wrapper">
+          <image class="avatar" :src="defaultAvatar"></image>
+          <image class="tag-icon" src="/static/important.png"></image>
+        </div>
+        <div class="attach-list">
+          <div class="attach-item" v-for="item in attachList" :key="item.type">
+            <div class="count">{{item.count}}</div>
+            <div class="unit">{{item.name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="name-wrapper">
+        <div class="nickname"></div>
+        <image class="vip-icon"></image>
+      </div>
+      <div class="pro-info">
+        <div class="pro-no">书法号：{{1234567}}</div>
+        <div class="pro-tag">
+          <image class="tag-icon"></image>
+          <div class="tag-title">中国书法协会会长</div>
+        </div>
+      </div>
+      <div class="info-left">
+        男·湖南省·长沙市
+      </div>
+      <div class="vip-wrapper">
+        <div class="vip-info">
+          <div class="vip-name">书法世界会员</div>
+          <div class="vip-desc">一年仅需98元</div>
+        </div>
+        <div class="get-btn">立即开通</div>
+      </div>
+      <div class="op-wrapper">
+        <div class="sales-item">
+          <div class="op-left">
+            <image class="op-icon"></image>
+            <div class="op-name">分销中心</div>
+          </div>
+          <div class="op-right">
+            <image class="arrow-icon"></image>
+          </div>
+        </div>
+        <div class="money-item">
+          <div class="op-left">
+            <image class="op-icon"></image>
+            <div class="op-name">我的钱包</div>
+          </div>
+          <div class="op-right">
+            <image class="arrow-icon"></image>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="op-left">
+            <image class="op-icon"></image>
+            <div class="op-name">联系客服</div>
+          </div>
+          <div class="op-right">
+            <image class="arrow-icon"></image>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+<script>
+import wepy from '@wepy/core';
+const defaultAvatar = '/static/default-avatar.png';
+
+wepy.page({
+  hooks: {
+    // Page 级别 hook, 只对当前 Page 的 setData 生效。
+    // 'before-setData': function(dirty) {
+    //   if (Math.random() < 0.2) {
+    //     console.log('setData canceled');
+    //     return false; // Cancel setData
+    //   }
+    //   dirty.time = +new Date();
+    //   return dirty;
+    // }
+  },
+
+  data: {
+    defaultAvatar:defaultAvatar,
+    attachList:[
+      {
+        type:'fans',
+        name:'粉丝',
+        count:'56'
+      },
+      {
+        type:'attention',
+        name:'关注',
+        count:'56'
+      },
+      {
+        type:'works',
+        name:'帖子',
+        count:'56'
+      }
+    ]
+  },
+
+  methods: {
+    SelectBar(tabIndex) {
+      this.selectedTabIndex = tabIndex;
+    },
+    ToPublish() {
+      this.showPublishBar = true;
+    },
+    ChooseImage() {
+      wx.chooseImage({
+        count: 9,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    },
+    TakePhoto() {
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['camera'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    }
+  },
+
+  created() {
+    let self = this;
+    wx.getUserInfo({
+      success(res) {
+        self.userInfo = res.userInfo;
+      }
+    });
+  }
+});
+</script>
+<config>
+{
+    navigationBarTitleText: '书法世界'
+}
+</config>

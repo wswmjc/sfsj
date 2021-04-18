@@ -1,0 +1,220 @@
+<style lang="less">
+
+</style>
+<template>
+    
+</template>
+<script>
+import wepy from '@wepy/core';
+const defaultAvatar = '../static/default-avatar.png';
+
+wepy.page({
+  config: {
+    navigationBarTitleText: '新动态'
+  },
+
+  hooks: {
+    // Page 级别 hook, 只对当前 Page 的 setData 生效。
+    // 'before-setData': function(dirty) {
+    //   if (Math.random() < 0.2) {
+    //     console.log('setData canceled');
+    //     return false; // Cancel setData
+    //   }
+    //   dirty.time = +new Date();
+    //   return dirty;
+    // }
+  },
+
+  data: {
+    tabList: ['关注', '推荐'],
+    selectedTabIndex: 0,
+    recommendList: [
+      {
+        nickname: '飞白兮',
+        avatar: defaultAvatar,
+        timeStr: '3小时前',
+        title:
+          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
+        picList: ['1'],
+        tags: [
+          {
+            id: '2',
+            name: '王羲之',
+            type: '2'
+          },
+          {
+            id: '3',
+            name: '楷书',
+            type: '3'
+          }
+        ],
+        isVip: true,
+        praiseCount: 111,
+        commentCount: 111,
+        shareCount: 111,
+        isFollow: false,
+        isSelf: false,
+        uid: ''
+      },
+      {
+        nickname: '飞白兮',
+        avatar: defaultAvatar,
+        timeStr: '3小时前',
+        title:
+          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
+        picList: ['1', '2'],
+        tags: [
+          {
+            id: '2',
+            name: '王羲之',
+            type: '2'
+          },
+          {
+            id: '3',
+            name: '楷书',
+            type: '3'
+          }
+        ],
+        isVip: true,
+        praiseCount: 111,
+        commentCount: 111,
+        shareCount: 111,
+        isFollow: false,
+        isSelf: false,
+        uid: ''
+      },
+      {
+        nickname: '飞白兮',
+        avatar: defaultAvatar,
+        timeStr: '3小时前',
+        title:
+          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
+        picList: ['1', '2', '3'],
+        tags: [
+          {
+            id: '2',
+            name: '王羲之',
+            type: '2'
+          },
+          {
+            id: '3',
+            name: '楷书',
+            type: '3'
+          }
+        ],
+        isVip: true,
+        praiseCount: 111,
+        commentCount: 111,
+        shareCount: 111,
+        isFollow: false,
+        isSelf: false,
+        uid: ''
+      }
+    ],
+    followList: [],
+    showPublishBar: false
+    // inputmodel: 'v-model',
+    // mynum: 20,
+    // userInfo: {
+    //   nickName: '加载中...'
+    // },
+    // currentTime: +new Date(),
+    // setTimeoutTitle: '标题三秒后会被修改',
+    // count: 0,
+    // netrst: '',
+    // groupList: [
+    //   {
+    //     id: 1,
+    //     name: '点击改变',
+    //     list: [
+    //       {
+    //         childid: '1.1',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '1.2',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '1.3',
+    //         childname: '子项，点我改变'
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     id: 2,
+    //     name: '点击改变',
+    //     list: [
+    //       {
+    //         childid: '2.1',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '2.2',
+    //         childname: '子项，点我改变'
+    //       },
+    //       {
+    //         childid: '2.3',
+    //         childname: '子项，点我改变'
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     id: 3,
+    //     name: '点击改变',
+    //     list: [
+    //       {
+    //         childid: '3.1',
+    //         childname: '子项，点我改变'
+    //       }
+    //     ]
+    //   }
+    // ]
+  },
+
+  methods: {
+    SelectBar(tabIndex) {
+      this.selectedTabIndex = tabIndex;
+    },
+    ToPublish() {
+      this.showPublishBar = true;
+    },
+    ChooseImage() {
+      wx.chooseImage({
+        count: 9,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    },
+    TakePhoto() {
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['camera'],
+        success(res) {
+          // tempFilePath可以作为img标签的src属性显示图片
+          const tempFilePaths = res.tempFilePaths;
+        }
+      });
+    }
+  },
+
+  created() {
+    let self = this;
+    wx.getUserInfo({
+      success(res) {
+        self.userInfo = res.userInfo;
+      }
+    });
+  }
+});
+</script>
+<config>
+{
+    navigationBarTitleText: '新动态'
+}
+</config>
