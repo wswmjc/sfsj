@@ -1,331 +1,332 @@
 <style lang="less">
-  .word-lib {
+.word-lib {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
+  .search-wrapper {
     width: 100%;
-    min-height: 100vh;
-    background: #F5F5F5;
-    .search-wrapper {
-      width: 100%;
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #fff;
+    box-sizing: border-box;
+    .search-icon {
+      position: absolute;
+      width: 36rpx;
+      height: 36rpx;
+      top: 26rpx;
+      left: 39rpx;
+    }
+    .search-content {
+      width: 701rpx;
+      height: 64rpx;
+      background: linear-gradient(90deg, #f3f8f8 0%, #eff4f4 100%);
+      border-radius: 4rpx;
+      border: 0;
+      box-sizing: border-box;
+      padding-left: 54rpx;
+      font-size: 26rpx;
+      color: #999;
+    }
+  }
+  .tab-wrapper {
+    width: 100%;
+    height: 88rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24rpx;
+    box-sizing: border-box;
+    background: #fff;
+    .tab-content {
+      width: 483rpx;
       height: 88rpx;
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-      background: #fff;
-      box-sizing: border-box;
-      .search-icon {
-        position: absolute;
-        width: 36rpx;
-        height: 36rpx;
-        top: 26rpx;
-        left: 39rpx;
-      }
-      .search-content {
-        width: 701rpx;
-        height: 64rpx;
-        background: linear-gradient(90deg, #F3F8F8 0%, #EFF4F4 100%);
-        border-radius: 4rpx;
-        border: 0;
-        box-sizing: border-box;
-        padding-left:54rpx;
-        font-size: 26rpx;
-        color: #999; 
+      .bar-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 0 24rpx;
+        font-size: 32rpx;
+        color: #333;
+        position: relative;
+        &.selected {
+          font-size: 44rpx;
+          font-weight: bold;
+          .selected-bar {
+            width: 20rpx;
+            height: 6rpx;
+            background: linear-gradient(90deg, #f39844 0%, #ea7032 100%);
+            border-radius: 3rpx;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+          }
+        }
       }
     }
-    .tab-wrapper {
-      width: 100%;
-      height: 88rpx;
+    .collect-content {
+      width: 128rpx;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24rpx;
-      box-sizing: border-box;
-      background: #fff;
-      .tab-content{
-        width: 483rpx;
-        height: 88rpx;
-        display: flex;
-        align-items: center;
-        .bar-item {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-          padding: 0 24rpx;
-          font-size: 32rpx;
-          color: #333;
-          position: relative;
-          &.selected {
-            font-size: 44rpx;
-            font-weight: bold;
-            .selected-bar {
-              width: 20rpx;
-              height: 6rpx;
-              background: linear-gradient(90deg, #f39844 0%, #ea7032 100%);
-              border-radius: 3rpx;
-              position: absolute;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              margin: 0 auto;
-            }
-          }
-        }
+      .collect-icon {
+        width: 29rpx;
+        height: 29rpx;
       }
-      .collect-content {
-        width: 128rpx;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .collect-icon {
-          width: 29rpx;
-          height: 29rpx;
-        }
-        .collect-text {
-          font-size: 24rpx;
-          color: #404040;
+      .collect-text {
+        font-size: 24rpx;
+        color: #404040;
+        &.selected {
+          color: #F39844;
         }
       }
     }
-    .list-wrapper {
+  }
+  .list-wrapper {
+    width: 100%;
+    padding: 0 24rpx;
+    box-sizing: border-box;
+    .condition-wrapper {
       width: 100%;
-      padding: 0 24rpx;
       box-sizing: border-box;
-      .condition-wrapper {
+      .all-condition {
         width: 100%;
+        height: 100rpx;
         box-sizing: border-box;
-        .all-condition {
-          width: 100%;
-          height: 100rpx;
-          box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .all-condition-list {
+          width: 432rpx;
+          display: flex;
+          align-items: center;
+          .all-condition-item {
+            padding: 6rpx 12rpx;
+            border-radius: 4rpx;
+            background: #d8d8d8;
+            color: #333333;
+            font-size: 24rpx;
+            margin-right: 24rpx;
+            &.selected {
+              background: linear-gradient(90deg, #f39844 0%, #ea7032 100%);
+              color: #fff;
+            }
+          }
+        }
+        .expand-btn {
+          width: 169rpx;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          .all-condition-list {
-            width: 432rpx;
-            display: flex;
-            align-items: center;
-            .all-condition-item {
-              padding: 6rpx 12rpx;
-              border-radius: 4rpx;
-              background: #D8D8D8;
-              color: #333333;
-              font-size: 24rpx;
-              margin-right: 24rpx;
-              &.selected {
-                background: linear-gradient(90deg, #F39844 0%, #EA7032 100%);
-                color: #fff;
-              }
-            }
+          font-size: 24rpx;
+          color: #333;
+          .arrow-icon {
+            width: 24rpx;
+            height: 24rpx;
           }
-          .expand-btn {
-            width: 169rpx;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        }
+      }
+      .year-condition {
+        width: 100%;
+        padding: 24rpx 0;
+        border-top: 1rpx solid #e9e9e9;
+        .year-condition-list {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          .year-condition-item {
+            padding: 6rpx 12rpx;
+            border-radius: 4rpx;
+            background: #d8d8d8;
+            color: #333333;
             font-size: 24rpx;
-            color: #333;
-            .arrow-icon {
-              width: 24rpx;
-              height: 24rpx;
-            }
-          }
-        }
-        .year-condition {
-          width: 100%;
-          padding: 24rpx 0;
-          border-top: 1rpx solid #E9E9E9;
-          .year-condition-list{
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            .year-condition-item {
-              padding: 6rpx 12rpx;
-              border-radius: 4rpx;
-              background: #D8D8D8;
-              color: #333333;
-              font-size: 24rpx;
-              margin-right: 24rpx;
-              margin-bottom: 12rpx;
-              &.selected {
-                background: linear-gradient(90deg, #F39844 0%, #EA7032 100%);
-                color: #fff;
-              }
-            }
-          }
-        }
-      }
-      .word-list-wrapper {
-        width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
-        .word-list{
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          box-sizing: border-box;
-          .word-item {
-            width: 226rpx;
+            margin-right: 24rpx;
             margin-bottom: 12rpx;
-            background: #fff;
-            .word-pic{
-              width: 100%;
-              height: 226rpx;
-              box-sizing: border-box;
-              padding: 6rpx;
-              border-bottom: 1rpx solid #eee;
-              margin-bottom: 15rpx;
-            }
-            .word-title{
-              width: 100%;
-              padding: 0 16rpx;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              font-size: 28rpx;
-              color: #333;
-              line-height: 40rpx;
-              margin-bottom: 4rpx;
-            }
-            .word-auth{
-              width: 100%;
-              padding: 0 16rpx;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              font-size: 22rpx;
-              color: #999;
-              line-height: 30rpx;
-              margin-bottom: 20rpx;
+            &.selected {
+              background: linear-gradient(90deg, #f39844 0%, #ea7032 100%);
+              color: #fff;
             }
           }
         }
       }
-      .page-list-wrapper {
-        width: 100%;
-        box-sizing: border-box;
-        overflow: hidden;
-        .page-list{
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          box-sizing: border-box;
-          .page-item {
-            width: 345rpx;
-            margin-bottom: 12rpx;
-            background: #fff;
-            .page-pic{
-              width: 100%;
-              height: 214rpx;
-              box-sizing: border-box;
-              padding: 6rpx;
-              border-bottom: 1rpx solid #eee;
-              margin-bottom: 15rpx;
-            }
-            .page-title{
-              width: 100%;
-              padding: 0 16rpx;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              font-size: 28rpx;
-              color: #333;
-              line-height: 40rpx;
-              margin-bottom: 4rpx;
-            }
-            .page-auth{
-              width: 100%;
-              padding: 0 16rpx;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              font-size: 22rpx;
-              color: #999;
-              line-height: 30rpx;
-              margin-bottom: 20rpx;
-            }
-          }
-        }
-      }
-      .auth-list-wrapper {
+    }
+    .word-list-wrapper {
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      .word-list {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        margin-top: 32rpx; 
-        .auth-list {
-          width: 525rpx;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          .auth-item {
-            width: 167rpx;
-            margin-bottom: 12rpx;
-            background: #fff;
-            .auth-pic{
-              width: 100%;
-              height: 167rpx;
-              margin-bottom:12rpx;
-            }
-            .auth-name{
-              font-size: 28rpx;
-              text-align: center;
-              width: 100%;
-              color: #333;
-              margin-bottom: 4rpx;
-            }
-            .auth-year{
-              font-size: 22rpx;
-              text-align: center;
-              width: 100%;
-              color: #999;
-              margin-bottom: 20rpx;
-            }
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        .word-item {
+          width: 226rpx;
+          margin-bottom: 12rpx;
+          background: #fff;
+          .word-pic {
+            width: 100%;
+            height: 226rpx;
+            box-sizing: border-box;
+            padding: 6rpx;
+            border-bottom: 1rpx solid #eee;
+            margin-bottom: 15rpx;
+          }
+          .word-title {
+            width: 100%;
+            padding: 0 16rpx;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 28rpx;
+            color: #333;
+            line-height: 40rpx;
+            margin-bottom: 4rpx;
+          }
+          .word-auth {
+            width: 100%;
+            padding: 0 16rpx;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 22rpx;
+            color: #999;
+            line-height: 30rpx;
+            margin-bottom: 20rpx;
           }
         }
-        .year-list-wrapper {
-          width: 78rpx;
-          height: auto;
+      }
+    }
+    .page-list-wrapper {
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      .page-list {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        .page-item {
+          width: 345rpx;
+          margin-bottom: 12rpx;
+          background: #fff;
+          .page-pic {
+            width: 100%;
+            height: 214rpx;
+            box-sizing: border-box;
+            padding: 6rpx;
+            border-bottom: 1rpx solid #eee;
+            margin-bottom: 15rpx;
+          }
+          .page-title {
+            width: 100%;
+            padding: 0 16rpx;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 28rpx;
+            color: #333;
+            line-height: 40rpx;
+            margin-bottom: 4rpx;
+          }
+          .page-auth {
+            width: 100%;
+            padding: 0 16rpx;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 22rpx;
+            color: #999;
+            line-height: 30rpx;
+            margin-bottom: 20rpx;
+          }
+        }
+      }
+    }
+    .auth-list-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 32rpx;
+      .auth-list {
+        width: 525rpx;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: flex-start;
+        .auth-item {
+          width: 167rpx;
+          margin-bottom: 12rpx;
+          background: #fff;
+          .auth-pic {
+            width: 100%;
+            height: 167rpx;
+            margin-bottom: 12rpx;
+          }
+          .auth-name {
+            font-size: 28rpx;
+            text-align: center;
+            width: 100%;
+            color: #333;
+            margin-bottom: 4rpx;
+          }
+          .auth-year {
+            font-size: 22rpx;
+            text-align: center;
+            width: 100%;
+            color: #999;
+            margin-bottom: 20rpx;
+          }
+        }
+      }
+      .year-list-wrapper {
+        width: 78rpx;
+        .year-list {
+          width: 100%;
           position: relative;
+          z-index: 1;
           .year-line {
             width: 2rpx;
             height: 100%;
-            background: #D8D8D8;
+            background: #d8d8d8;
             top: 0;
             left: 0;
             right: 0;
             margin: 0 auto;
-            z-index: 1;
-          }
-          .year-list {
-            width: 100%;
+            z-index: -1;
             position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            .year-item {
-              width: 78rpx;
-              height: 78rpx;
-              background: #D8D8D8;
-              border: 4rpx solid #F5F5F5;
-              box-sizing: border-box;
-              border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 24rpx;
-              color: #333;
-              margin-bottom: 100rpx;
-              &:last-child{
-                margin-bottom: 0;
-              }
-              &.selected{
-                border: 0;
-                background: linear-gradient(90deg, #F39844 0%, #EA7032 100%);
-                color: #fff;
-              }
+          }
+          .year-item {
+            width: 78rpx;
+            height: 78rpx;
+            background: #d8d8d8;
+            border: 4rpx solid #f5f5f5;
+            box-sizing: border-box;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24rpx;
+            color: #333;
+            margin-bottom: 100rpx;
+            &:last-child {
+              margin-bottom: 0;
+            }
+            &.selected {
+              border: 0;
+              background: linear-gradient(90deg, #f39844 0%, #ea7032 100%);
+              color: #fff;
             }
           }
         }
       }
     }
   }
+}
 </style>
 <template>
     <div class="word-lib">
@@ -341,8 +342,9 @@
           </div>
         </div>
         <div class="collect-content" @tap="SelectCollect">
-          <image class="collect-icon" src="/static/uncollect.png"></image>
-          <div class="collect-text">我的收藏</div>
+          <image class="collect-icon" src="/static/uncollect.png" v-if="3!==selectedTabIndex"></image>
+          <image class="collect-icon" src="/static/collected.png" v-else></image>
+          <div class="collect-text" :class="{selected: 3===selectedTabIndex}">我的收藏</div>
         </div>
       </div>
       <div class="list-wrapper" v-if="selectedTabIndex<=2">
@@ -374,6 +376,7 @@
               <div class="word-title">{{item.title}}</div>
               <div class="word-auth">{{item.auth}}</div>
             </div>
+            <div class="word-item" style="visibility:hidden;" v-for="item in 3 - wordList.length%3" :key="item"></div>
           </div>
         </div>
         <div class="page-list-wrapper" v-if="selectedTabIndex===1">
@@ -392,10 +395,11 @@
               <div class="auth-name">{{item.name}}</div>
               <div class="auth-year">{{item.year}}</div>
             </div>
+             <div class="auth-item" style="visibility:hidden;" v-for="item in 3 - authList.length % 3" :key="item"></div>
           </div>
           <div class="year-list-wrapper">
-            <div class="year-line"></div>
             <div class="year-list">
+              <div class="year-line"></div>
               <div class="year-item" :class="{selected: index === selectedYear}"  v-for="(item,index) in dynastyList" :key="index" @tap="SelectYear(index)">
                 {{index===0?"全部": item}}
               </div>
@@ -466,180 +470,190 @@ wepy.page({
 
   data: {
     tabList: ['单字库', '字帖库', '书法家'],
-    wordTypeList: ['全部','楷','行','隶','篆'],
-    dynastyList: ['全部朝代','先秦','汉','唐','宋','元','明','清','近代'],
-    selectedTabIndex:0,
-    selectedWordType:0,
-    selectedDynasty:0,
+    wordTypeList: ['全部', '楷', '行', '隶', '篆'],
+    dynastyList: [
+      '全部朝代',
+      '先秦',
+      '汉',
+      '唐',
+      '宋',
+      '元',
+      '明',
+      '清',
+      '近代'
+    ],
+    selectedTabIndex: 0,
+    selectedWordType: 0,
+    selectedDynasty: 0,
     showAllCondition: false,
-    wordList:[
+    wordList: [
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      },
       {
-      pic:'',
-      id:'',
-      title:'智永千字文',
-      auth:'晋 王羲之'
-    },
+        pic: '',
+        id: '',
+        title: '智永千字文',
+        auth: '晋 王羲之'
+      }
     ],
-    pageList:[
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
-       {
-      pic:'',
-      id:'',
-      title:'兰亭集序',
-      auth:'晋 王羲之'
-    },
+    pageList: [
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      },
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      },
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      },
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      },
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      },
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      },
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      },
+      {
+        pic: '',
+        id: '',
+        title: '兰亭集序',
+        auth: '晋 王羲之'
+      }
     ],
-    authList:[
+    authList: [
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    },
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      },
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    },
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      },
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    },
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      },
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    },
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      },
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    },
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      },
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    },
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      },
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    },
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      },
       {
-      pic:'',
-      id:'',
-      name:'王羲之',
-      year:'公元709-769'
-    }
+        pic: '',
+        id: '',
+        name: '王羲之',
+        year: '公元709-769'
+      }
     ],
     selectedYear: 0
   },
 
   methods: {
     SelectCollect() {
-      this.selectedTabIndex = 3
+      this.selectedTabIndex = 3;
     },
     SelectBar(tabIndex) {
       this.selectedTabIndex = tabIndex;
@@ -651,10 +665,10 @@ wepy.page({
       this.selectedDynasty = dynastyIndex;
     },
     SelectYear(yearIndex) {
-      this.selectedYear = yearIndex
+      this.selectedYear = yearIndex;
     },
     SwtichCondtion() {
-      this.showAllCondition = !this.showAllCondition
+      this.showAllCondition = !this.showAllCondition;
     },
     ToPublish() {
       this.showPublishBar = true;
