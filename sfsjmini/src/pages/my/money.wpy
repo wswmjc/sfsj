@@ -1,8 +1,87 @@
 <style lang="less">
-
+.money-wrapper{
+  width: 100%;
+  height: 100vh;
+  background: #F5F5F5;
+  box-sizing: border-box;
+    overflow: hidden;
+  .money-card{
+    width: 702rpx;
+    height: 350rpx;
+    background: linear-gradient(119deg, #FF6652 0%, #FF9A55 100%);
+    border-radius: 12rpx;
+    margin: 0 auto;
+    margin-top: 24rpx;
+    overflow: hidden;
+    .get-money {
+      width: 100%;
+      text-align: center;
+      .record-amount {
+        width: 100%;
+        text-align: center;
+        margin-top: 35rpx;
+        .unit{
+          font-size: 28rpx;
+          color: #fff;
+        }
+        .count {
+          font-size: 56rpx;
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+      .record-name {
+        font-size: 26rpx;
+        margin-top: 2rpx;
+        color: #fff;
+      }
+    }
+    .money-record {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-top:48rpx; 
+    }
+  }
+}
 </style>
 <template>
-    
+    <div class="money-wrapper">
+      <div class="money-card">
+        <div class="get-money">
+            <div class="record-amount"><span class="unit">¥</span><span class="count">3200</span></div>
+            <div class="record-name">已发放佣金</div>
+        </div>
+        <div class="money-record">
+          <div class="record-item">
+            <div class="record-amount"><span class="unit">¥</span><span class="count">32</span></div>
+            <div class="record-name">待发放佣金</div>
+          </div>
+          <div class="record-item">
+            <div class="record-amount"><span class="unit">¥</span><span class="count">32</span></div>
+            <div class="record-name">今日提现</div>
+          </div>
+          <div class="record-item">
+            <div class="record-amount"><span class="unit">¥</span><span class="count">32</span></div>
+            <div class="record-name">累计提现</div>
+          </div>
+        </div>
+      </div>
+      <div class="op-wrapper">
+        <div class="op-item">
+          <div class="op-name">提现到微信</div>
+          <image class="op-btn" mode="widthFix" src="/static/arrow-right.png"></image>
+        </div>
+        <div class="op-item">
+          <div class="op-name">收入明细</div>
+          <image class="op-btn" mode="widthFix" src="/static/arrow-right.png"></image>
+        </div>
+        <div class="op-item">
+          <div class="op-name">提现明细</div>
+          <image class="op-btn" mode="widthFix" src="/static/arrow-right.png"></image>
+        </div>
+      </div>
+    </div>
 </template>
 <script>
 import wepy from '@wepy/core';
@@ -25,183 +104,9 @@ wepy.page({
     // }
   },
 
-  data: {
-    tabList: ['关注', '推荐'],
-    selectedTabIndex: 0,
-    recommendList: [
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      },
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1', '2'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      },
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1', '2', '3'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      }
-    ],
-    followList: [],
-    showPublishBar: false
-    // inputmodel: 'v-model',
-    // mynum: 20,
-    // userInfo: {
-    //   nickName: '加载中...'
-    // },
-    // currentTime: +new Date(),
-    // setTimeoutTitle: '标题三秒后会被修改',
-    // count: 0,
-    // netrst: '',
-    // groupList: [
-    //   {
-    //     id: 1,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '1.1',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '1.2',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '1.3',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: 2,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '2.1',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '2.2',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '2.3',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: 3,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '3.1',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   }
-    // ]
-  },
+  data: {},
 
-  methods: {
-    SelectBar(tabIndex) {
-      this.selectedTabIndex = tabIndex;
-    },
-    ToPublish() {
-      this.showPublishBar = true;
-    },
-    ChooseImage() {
-      wx.chooseImage({
-        count: 9,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album'],
-        success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths;
-        }
-      });
-    },
-    TakePhoto() {
-      wx.chooseImage({
-        count: 1,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['camera'],
-        success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths;
-        }
-      });
-    }
-  },
+  methods: {},
 
   created() {
     let self = this;
