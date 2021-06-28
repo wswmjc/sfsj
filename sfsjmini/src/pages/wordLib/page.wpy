@@ -5,8 +5,7 @@
     
 </template>
 <script>
-import wepy from '@wepy/core';
-const defaultAvatar = '../static/default-avatar.png';
+import wepy from '@wepy/core'
 
 wepy.page({
   config: {
@@ -174,10 +173,10 @@ wepy.page({
 
   methods: {
     SelectBar(tabIndex) {
-      this.selectedTabIndex = tabIndex;
+      this.selectedTabIndex = tabIndex
     },
     ToPublish() {
-      this.showPublishBar = true;
+      this.showPublishBar = true
     },
     ChooseImage() {
       wx.chooseImage({
@@ -186,9 +185,9 @@ wepy.page({
         sourceType: ['album'],
         success(res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths;
+          const tempFilePaths = res.tempFilePaths
         }
-      });
+      })
     },
     TakePhoto() {
       wx.chooseImage({
@@ -197,21 +196,16 @@ wepy.page({
         sourceType: ['camera'],
         success(res) {
           // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths;
+          const tempFilePaths = res.tempFilePaths
         }
-      });
+      })
     }
   },
 
-  created() {
-    let self = this;
-    wx.getUserInfo({
-      success(res) {
-        self.userInfo = res.userInfo;
-      }
-    });
+  created(options) {
+    console.log(options)
   }
-});
+})
 </script>
 <config>
 {
