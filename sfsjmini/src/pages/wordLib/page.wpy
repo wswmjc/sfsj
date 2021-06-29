@@ -1,12 +1,122 @@
+<!--
+ * @Author: wahrheit
+ * @Date: 2021-06-24 17:18:36
+ * @LastEditTime: 2021-06-29 11:50:36
+ * @LastEditors: wahrheit
+ * @Description: 
+ * @FilePath: \sfsjmini\src\pages\wordLib\page.wpy
+ * 一往无前的唯一动力就是热爱你所做的一切
+-->
 <style lang="less">
-
+  .page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background: #F5F5F5;
+    overflow: hidden;
+    movable-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 792rpx;
+      width: 100%;
+      margin-top: 64rpx;
+      movable-view {
+        width: 439rpx;
+        image {
+          width: 100%;
+        }
+      }
+    }
+    .move-tip {
+      font-size: 24rpx;
+      margin-top: 24rpx;
+      color: #999999;
+      line-height: 33rpx;
+      width: 100%;
+      text-align: center;
+    }
+    .oper-wrapper {
+      width: 100%;
+      margin-top: 68rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .oper-item {
+        width: 56rpx;
+        margin: 0 24rpx;
+        image {
+          width: 100%;
+          margin-bottom: 4rpx;
+        }
+        .oper-text {
+          width: 100%;
+          text-align: center;
+          color: #EA7032;
+          font-size: 24rpx;
+          line-height: 33rpx;
+        }
+      }
+    }
+     
+    .page-list {
+      width: 100%;
+      position: fixed;
+      bottom: 0;
+      background: #fff;
+      height: 337rpx;
+      white-space: nowrap;
+      padding-top: 24rpx;
+      padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+      .page-item {
+        width: 124rpx;
+        margin-left: 12rpx;
+        display: inline-block;
+        image {
+          width: 100%;
+        }
+      }
+    }
+  }
 </style>
 <template>
-    
+    <div class="page-wrapper">
+        <movable-area>
+          <movable-view class="page-pic" direction="all">
+            <image mode="widthFix" :src="selectedItem.pic"/>
+          </movable-view>
+        </movable-area>
+        <div class="move-tip">提示：双指可放大缩小、拖动</div>
+        <div class="oper-wrapper">
+          <div class="oper-item explain">
+            <image mode="widthFix" src="/static/explain.png"/>
+            <div class="oper-text">释义</div>
+          </div>
+          <div class="oper-item word">
+            <image mode="widthFix" src="/static/s-word.png"/>
+            <div class="oper-text">单字</div>
+          </div>
+          <div class="oper-item collect">
+            <image mode="widthFix" src="/static/collect-big.png"/>
+            <div class="oper-text">收藏</div>
+          </div>
+          <div class="oper-item full">
+            <image mode="widthFix" src="/static/screen.png"/>
+            <div class="oper-text">全屏</div>
+          </div>
+        </div>
+        <scroll-view scroll-x="true" class="page-list">
+          <div id="" class="page-item" v-for="(item,index) in seriesList" :key="index" @tap="Select(item)">
+            <image mode="widthFix" :src="item.pic"/>
+          </div>
+        </scroll-view>
+        <div class="full-wrapper" v-show="showFull">
+           <image mode="widthFix" :src="selectedItem.pic"/>
+        </div>
+    </div>
 </template>
 <script>
 import wepy from '@wepy/core'
-
+import wordapi from '../../lib/wordLib/index'
 wepy.page({
   config: {
     navigationBarTitleText: '新动态'
@@ -25,185 +135,55 @@ wepy.page({
   },
 
   data: {
-    tabList: ['关注', '推荐'],
-    selectedTabIndex: 0,
-    recommendList: [
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      },
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1', '2'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      },
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1', '2', '3'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      }
-    ],
-    followList: [],
-    showPublishBar: false
-    // inputmodel: 'v-model',
-    // mynum: 20,
-    // userInfo: {
-    //   nickName: '加载中...'
-    // },
-    // currentTime: +new Date(),
-    // setTimeoutTitle: '标题三秒后会被修改',
-    // count: 0,
-    // netrst: '',
-    // groupList: [
-    //   {
-    //     id: 1,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '1.1',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '1.2',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '1.3',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: 2,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '2.1',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '2.2',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '2.3',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: 3,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '3.1',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   }
-    // ]
+    pageId: '',
+    title: '',
+    seriesList: [],
+    selectedItem: {
+      title: '',
+      id: '',
+      pic: '',
+      bigPic: ''
+    },
+    showFull: false
   },
 
   methods: {
     SelectBar(tabIndex) {
       this.selectedTabIndex = tabIndex
     },
-    ToPublish() {
-      this.showPublishBar = true
-    },
-    ChooseImage() {
-      wx.chooseImage({
-        count: 9,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album'],
-        success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths
+    GetDetail() {
+      wordapi.GetDetailInfo({
+        copybookId: this.pageId
+      }).then(result => {
+        console.log(result)
+        const {status, data} = result
+        if (+status === 1) {
+          this.title = data.title
+          this.pic = data.pic
+          this.seriesList = data.items.map(item => {
+            return {
+              id: item.id,
+              pic: item.pic,
+              title: item.title,
+              bigPic: item.big_pic
+            }
+          })
         }
       })
     },
-    TakePhoto() {
-      wx.chooseImage({
-        count: 1,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['camera'],
-        success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths
-        }
-      })
+    Select(item) {
+      this.selectedItem = {
+        ...item
+      }
     }
   },
 
-  created(options) {
+  created() {
+  },
+  onLoad(options) {
     console.log(options)
+    this.pageId = options.pageId
+    this.GetDetail()
   }
 })
 </script>
