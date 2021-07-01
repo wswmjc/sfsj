@@ -1,7 +1,7 @@
 <!--
  * @Author: wahrheit
  * @Date: 2021-06-24 17:18:36
- * @LastEditTime: 2021-06-29 11:50:36
+ * @LastEditTime: 2021-07-01 15:09:03
  * @LastEditors: wahrheit
  * @Description: 
  * @FilePath: \sfsjmini\src\pages\wordLib\page.wpy
@@ -14,14 +14,20 @@
     background: #F5F5F5;
     overflow: hidden;
     movable-area {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 792rpx;
+      height: 592rpx;
       width: 100%;
       margin-top: 64rpx;
+      overflow: hidden;
       movable-view {
-        width: 439rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        // top: 10%;
+        // left: 0;
+        // right: 0;
+        // margin:  0 auto;
         image {
           width: 100%;
         }
@@ -63,7 +69,7 @@
       position: fixed;
       bottom: 0;
       background: #fff;
-      height: 337rpx;
+      height: 250rpx;
       white-space: nowrap;
       padding-top: 24rpx;
       padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
@@ -76,13 +82,29 @@
         }
       }
     }
+    .full-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #F5F5F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 </style>
 <template>
     <div class="page-wrapper">
-        <movable-area>
-          <movable-view class="page-pic" direction="all">
-            <image mode="widthFix" :src="selectedItem.pic"/>
+        <movable-area scale-area="true">
+          <movable-view class="page-pic" y="0" direction="all" out-of-bounds="true" scale="true" scale-value="0.2">
+            <image mode="aspectFit" :src="selectedItem.pic"/>
           </movable-view>
         </movable-area>
         <div class="move-tip">提示：双指可放大缩小、拖动</div>
@@ -95,45 +117,33 @@
             <image mode="widthFix" src="/static/s-word.png"/>
             <div class="oper-text">单字</div>
           </div>
-          <div class="oper-item collect">
+          <div class="oper-item collect" @tap="Collect">
             <image mode="widthFix" src="/static/collect-big.png"/>
             <div class="oper-text">收藏</div>
           </div>
-          <div class="oper-item full">
+          <div class="oper-item full" @tap="Full">
             <image mode="widthFix" src="/static/screen.png"/>
             <div class="oper-text">全屏</div>
           </div>
         </div>
-        <scroll-view scroll-x="true" class="page-list">
-          <div id="" class="page-item" v-for="(item,index) in seriesList" :key="index" @tap="Select(item)">
+        <scroll-view scroll-x="true" class="page-list" :scroll-into-view="currentId">
+          <div id="page{{item.id}}" class="page-item" v-for="(item,index) in seriesList" :key="index" @tap="Select(item)">
             <image mode="widthFix" :src="item.pic"/>
           </div>
         </scroll-view>
-        <div class="full-wrapper" v-show="showFull">
-           <image mode="widthFix" :src="selectedItem.pic"/>
+        <div class="full-wrapper" v-if="showFull" @tap="CloseFull">
+           <image mode="aspectFit" :src="selectedItem.pic"/>
         </div>
     </div>
 </template>
 <script>
 import wepy from '@wepy/core'
 import wordapi from '../../lib/wordLib/index'
+import userapi from '../../lib/user/index'
 wepy.page({
   config: {
     navigationBarTitleText: '新动态'
   },
-
-  hooks: {
-    // Page 级别 hook, 只对当前 Page 的 setData 生效。
-    // 'before-setData': function(dirty) {
-    //   if (Math.random() < 0.2) {
-    //     console.log('setData canceled');
-    //     return false; // Cancel setData
-    //   }
-    //   dirty.time = +new Date();
-    //   return dirty;
-    // }
-  },
-
   data: {
     pageId: '',
     title: '',
@@ -144,10 +154,17 @@ wepy.page({
       pic: '',
       bigPic: ''
     },
-    showFull: false
+    showFull: false,
+    currentId: 'page0'
   },
 
   methods: {
+    Full() {
+      this.showFull = true
+    },
+    CloseFull() {
+      this.showFull = false
+    },
     SelectBar(tabIndex) {
       this.selectedTabIndex = tabIndex
     },
@@ -168,6 +185,9 @@ wepy.page({
               bigPic: item.big_pic
             }
           })
+          if (this.seriesList.length > 0) {
+            this.Select(this.seriesList[this.seriesList.length - 1])
+          }
         }
       })
     },
@@ -175,6 +195,24 @@ wepy.page({
       this.selectedItem = {
         ...item
       }
+      console.log(item)
+      this.currentId = `page${item.id}`
+      wx.setNavigationBarTitle({
+        title: item.title
+      })
+    },
+    Collect() {
+      userapi.Collect({
+        uid: 1,
+        type: 1,
+        copybookId: this.selectedItem.id
+      }).then(res => {
+        if (+res.status === 1) {
+          wx.showToast({
+            content: '收藏成功'
+          })
+        }
+      })
     }
   },
 

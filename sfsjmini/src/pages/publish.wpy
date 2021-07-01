@@ -1,220 +1,168 @@
+<!--
+ * @Author: wahrheit
+ * @Date: 2021-06-24 17:18:36
+ * @LastEditTime: 2021-07-01 18:23:37
+ * @LastEditors: wahrheit
+ * @Description: 
+ * @FilePath: \sfsjmini\src\pages\publish.wpy
+ * 一往无前的唯一动力就是热爱你所做的一切
+-->
 <style lang="less">
+.publish-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24rpx;
+  background: #fff;
+  .btn-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .btn {
+      display: inline-block;
+      width: 96rpx;
+      height: 48rpx;
+      background: linear-gradient(90deg, #F39844 0%, #EA7032 100%);
+      border-radius: 4rpx;
+      text-align: center;
+      line-height: 48rpx;
+      margin-bottom: 16rpx;
+      color: #fff;
+      font-size: 24rpx;
+    }
+  }
+  .publish-content {
+    width: 100%;
+    margin-bottom: 64rpx;
+    font-size: 32rpx;
+    line-height: 45rpx;
+    color: #333;
+  }
+  .img-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .img-item{
+      width: 226rpx;
+      height: 226rpx;
+      background: #F5F5F5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12rpx;
+      overflow: hidden;
+      box-sizing: border-box;
+      image {
+        width: 100%;
+        height: 100%;
+      }
+      &.add-btn image {
+        width: 44rpx;
+        height: 44rpx;
+      }
+      &.blank {
+        background: #fff;
+      }
+    }
+  }
+}
 
 </style>
 <template>
-    
+    <div class="publish-wrapper">
+      <div class="btn-wrapper">
+        <div class="btn">发布</div>
+      </div>
+      <textarea class="publish-content" placeholder="这一刻的想法" auto-height></textarea>
+      <div class="img-wrapper">
+        <div class="img-item" v-for="(item,index) in picList" :key="index">
+          <image src="{{item}}" mode="aspectFill"/>
+        </div>
+        <div class="img-item add-btn" v-if="picList.length<9">
+          <image mode="widthFix" src="/static/add.png"/>
+        </div>
+        <div class="img-item blank" v-if="picList.length%3==2"></div>
+      </div>
+      <div class="check-btn check-page-btn">
+        <div class="check-text">选择碑帖</div>
+        <image src="/static/arrow-right.png"/>
+      </div>
+      <div class="check-btn check-author-btn">
+        <div class="check-text">选择书法家</div>
+        <image src="/static/arrow-right.png"/>
+      </div>
+      <div class="check-btn check-theme-btn">
+        <div class="check-text">插入话题</div>
+        <image src="/static/arrow-right.png"/>
+      </div>
+    </div>
 </template>
 <script>
-import wepy from '@wepy/core';
-const defaultAvatar = '../static/default-avatar.png';
-
+/* global getCurrentPages */
+import wepy from '@wepy/core'
+import commonapi from '../lib/common/index'
 wepy.page({
   config: {
-    navigationBarTitleText: '新动态'
-  },
-
-  hooks: {
-    // Page 级别 hook, 只对当前 Page 的 setData 生效。
-    // 'before-setData': function(dirty) {
-    //   if (Math.random() < 0.2) {
-    //     console.log('setData canceled');
-    //     return false; // Cancel setData
-    //   }
-    //   dirty.time = +new Date();
-    //   return dirty;
-    // }
+    navigationBarTitleText: '发布'
   },
 
   data: {
-    tabList: ['关注', '推荐'],
-    selectedTabIndex: 0,
-    recommendList: [
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      },
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1', '2'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      },
-      {
-        nickname: '飞白兮',
-        avatar: defaultAvatar,
-        timeStr: '3小时前',
-        title:
-          '标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题标题标题比套题',
-        picList: ['1', '2', '3'],
-        tags: [
-          {
-            id: '2',
-            name: '王羲之',
-            type: '2'
-          },
-          {
-            id: '3',
-            name: '楷书',
-            type: '3'
-          }
-        ],
-        isVip: true,
-        praiseCount: 111,
-        commentCount: 111,
-        shareCount: 111,
-        isFollow: false,
-        isSelf: false,
-        uid: ''
-      }
-    ],
-    followList: [],
-    showPublishBar: false
-    // inputmodel: 'v-model',
-    // mynum: 20,
-    // userInfo: {
-    //   nickName: '加载中...'
-    // },
-    // currentTime: +new Date(),
-    // setTimeoutTitle: '标题三秒后会被修改',
-    // count: 0,
-    // netrst: '',
-    // groupList: [
-    //   {
-    //     id: 1,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '1.1',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '1.2',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '1.3',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: 2,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '2.1',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '2.2',
-    //         childname: '子项，点我改变'
-    //       },
-    //       {
-    //         childid: '2.3',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: 3,
-    //     name: '点击改变',
-    //     list: [
-    //       {
-    //         childid: '3.1',
-    //         childname: '子项，点我改变'
-    //       }
-    //     ]
-    //   }
-    // ]
+    authorList: [],
+    pageList: [],
+    themeList: [],
+    picList: []
   },
 
   methods: {
-    SelectBar(tabIndex) {
-      this.selectedTabIndex = tabIndex;
-    },
-    ToPublish() {
-      this.showPublishBar = true;
-    },
-    ChooseImage() {
-      wx.chooseImage({
-        count: 9,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album'],
-        success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths;
+    GetConfig() {
+      commonapi.GetSearchConfig().then(result => {
+        console.log('result', result)
+        const {status, data} = result
+        if (+status === 1) {
+          this.dynastyList = [{
+            id: 0,
+            title: '全部',
+            abbr: '全部'
+          }, ...data.dynastys.map(item => {
+            return {
+              id: +item.id,
+              title: item.title,
+              abbr: item.title.substr(0, 2)
+            }
+          })]
+          this.wordTypeList = [{
+            id: 0,
+            title: '全部'
+          }, ...data.typefaces.map(item => {
+            return {
+              id: +item.id,
+              title: item.title
+            }
+          })]
         }
-      });
-    },
-    TakePhoto() {
-      wx.chooseImage({
-        count: 1,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['camera'],
-        success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths;
-        }
-      });
+      })
     }
   },
-
+  onLoad() {
+    let pages = getCurrentPages()
+    if (pages.length > 0) {
+      let indexPage = pages[pages.length - 2]
+      // console.log('pics', indexPage.data.tempSelectImages)
+      this.picList = indexPage.data.tempSelectImages
+    }
+  },
   created() {
-    let self = this;
+    let self = this
     wx.getUserInfo({
       success(res) {
-        self.userInfo = res.userInfo;
+        self.userInfo = res.userInfo
       }
-    });
+    })
   }
-});
+})
 </script>
 <config>
 {
-    navigationBarTitleText: '新动态'
+    navigationBarTitleText: '发布'
 }
 </config>
